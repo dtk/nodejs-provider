@@ -1,0 +1,47 @@
+---
+dsl_version:
+module: nodejs-provider
+version: 0.0.1
+component_defs:
+  nodejs-provider:
+    attributes:
+      version:
+        type: string
+        default: 1
+  provider:
+    attributes:
+      nodejs_version:
+        type: string
+        description: version of Node.js interpreter
+        default: 7.10
+      npms:
+        type: array
+        description: an array where each item is either 'npm' or npm/version'
+      entrypoint:
+        type: string
+        description: relative path of code to call to execute Node.js code
+        required: true
+  container:
+    attributes:
+      dockerfile:
+        type: string
+        constant: true
+        default: ! 'FROM node:{{nodejs_version}}
+
+          MAINTAINER dtk <support.dtk.com>
+
+          # this path will be used by both yarn to install modules
+          # as well as node to look for modules when running the gRPC server
+          ENV NODE_PATH=/var/lib/dtk
+
+          # run yarn to install all the dependencies for the nodejs-provider
+          RUN /usr/share/dtk/modules/nodejs-provider/setup.sh
+
+          {{#npms}}
+
+          RUN npm -g install {{.}}
+
+          {{/npms}}
+
+
+          ENTRYPOINT "/usr/share/dtk/modules/nodejs-provider/init"
