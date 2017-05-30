@@ -42,9 +42,7 @@ const MODULE_PATH      = '/usr/share/dtk/modules'
 const PROVIDER_MODULE_PATH = '/usr/share/dtk/modules/dtk-provider-ruby'
 const DEFAULT_NODEJS_VERSION = '7.10';
 
-/**
- * Implements the SayHello RPC method.
- */
+// process the message received from dtk-arbiter
 function processMessage(call, callback) {
   var reply = new messages.ArbiterMessage();
   // console.log(call.request.getMessage());
