@@ -1,6 +1,6 @@
 ---
 dsl_version:
-module: nodejs-provider
+module: dtk-provider/nodejs-provider
 version: 0.0.1
 component_defs:
   nodejs-provider:
@@ -26,7 +26,8 @@ component_defs:
       dockerfile:
         type: string
         constant: true
-        default: ! 'FROM node:{{nodejs_version}}
+        default: | 
+          FROM node:{{nodejs_version}}
 
           MAINTAINER dtk <support.dtk.com>
 
