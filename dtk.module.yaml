@@ -1,7 +1,7 @@
 ---
 dsl_version:
 module: dtk-provider/nodejs-provider
-version: 0.0.1
+version: master
 component_defs:
   nodejs-provider:
     attributes:
