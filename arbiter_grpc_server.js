@@ -1,4 +1,4 @@
-#!/usr/bin/env nodejs
+#!/usr/bin/env node
 
 /*
  *
@@ -73,9 +73,11 @@ function generateAttributes(provider_message_hash) {
 }
 
 function main() {
+  var portargument = process.argv.slice(2)[0];
+  var port = typeof portargument  !== 'undefined' ?  portargument  : '50051';
   var server = new grpc.Server();
   server.addService(services.ArbiterProviderService, {processMessage: processMessage});
-  server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
+  server.bind(`0.0.0.0:${port}`, grpc.ServerCredentials.createInsecure());
   server.start();
 }
 

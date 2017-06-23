@@ -182,7 +182,7 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
 
-"dtk@file:./lib/dtk":
+"dtk@file:lib/dtk":
   version "1.0.0"
 
 ecc-jsbn@~0.1.1:
